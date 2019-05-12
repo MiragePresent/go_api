@@ -13,14 +13,16 @@ type User struct {
 
 // Session it's a group of rounds
 type Session struct {
-	ID         string  `json:"id"`
-	Name       string  `json:"name"`
-	SessionKey string  `json:"sessionKey"`
-	Rounds     []Round `json:"rounds"`
+	ID         string        `json:"id"`
+	Name       string        `json:"name"`
+	SessionKey string        `json:"sessionKey"`
+	Rounds     []Round       `json:"rounds"`
+	Users      []SessionUser `json:"users"`
 }
 
 // SessionUser it's relation between session and its members
 type SessionUser struct {
+	SessionID string `json:"sessionID"`
 	UserID    string `json:"userID"`
 	IsManager bool   `json:"isManager"`
 }
@@ -35,9 +37,10 @@ type Round struct {
 
 // Attempt to win an round
 type Attempt struct {
-	UserID string `json:"userID"`
-	Time   string `json:"time"`
-	Passed bool   `json:"passed"`
+	RoundID string `json:"roundID"`
+	UserID  string `json:"userID"`
+	Time    string `json:"time"`
+	Passed  bool   `json:"passed"`
 }
 
 func main() {
